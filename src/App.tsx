@@ -17,6 +17,10 @@ import Reports from "./pages/Reports";
 import Remediation from "./pages/Remediation";
 import Settings from "./pages/Settings";
 import PricingPage from "./pages/PricingPage";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import Legal from "./pages/Legal";
+import Abuse from "./pages/Abuse";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -56,6 +60,10 @@ const App = () => (
                     <Routes>
                       <Route path="/" element={<Index />} />
                       <Route path="/pricing" element={<PricingPage />} />
+                      <Route path="/terms" element={<Terms />} />
+                      <Route path="/privacy" element={<Privacy />} />
+                      <Route path="/legal" element={<Legal />} />
+                      <Route path="/abuse" element={<Abuse />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
