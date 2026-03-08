@@ -492,6 +492,7 @@ const ApiDiscovery = () => {
             )}
           </main>
         </div>
+        <BottomNav />
       </div>
     </SidebarProvider>
   );

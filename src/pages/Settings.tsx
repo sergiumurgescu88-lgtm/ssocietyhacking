@@ -645,6 +645,7 @@ const Settings = () => {
             </Tabs>
           </main>
         </div>
+        <BottomNav />
       </div>
     </SidebarProvider>
   );

@@ -383,6 +383,7 @@ const Authorization = () => {
             </div>
           </main>
         </div>
+        <BottomNav />
       </div>
     </SidebarProvider>
   );
