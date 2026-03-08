@@ -170,6 +170,9 @@ const Index = () => {
 
       {/* How It Works */}
       <HowItWorks />
+
+      {/* Pricing */}
+      <Pricing />
     </div>
   );
 };
