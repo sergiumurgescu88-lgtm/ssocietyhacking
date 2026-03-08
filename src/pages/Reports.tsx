@@ -324,6 +324,7 @@ const Reports = () => {
               </div>
             </main>
           </div>
+          <BottomNav />
         </div>
       </SidebarProvider>
     );
