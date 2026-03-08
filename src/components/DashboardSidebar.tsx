@@ -38,7 +38,7 @@ export const DashboardSidebar = () => {
   const collapsed = state === "collapsed";
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="hidden lg:flex">
       <SidebarHeader className="p-4 border-b border-sidebar-border">
         <div className="flex items-center gap-2 overflow-hidden">
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0">
