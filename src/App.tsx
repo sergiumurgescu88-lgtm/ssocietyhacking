@@ -36,6 +36,7 @@ const App = () => (
             <Route path="/dashboard/*" element={<Dashboard />} />
             <Route path="/dashboard/authorization" element={<Authorization />} />
             <Route path="/dashboard/api-scanner" element={<ApiDiscovery />} />
+            <Route path="/dashboard/vulnerability" element={<VulnerabilityScanner />} />
 
             {/* Main layout */}
             <Route
