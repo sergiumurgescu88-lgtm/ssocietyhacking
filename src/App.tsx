@@ -16,6 +16,7 @@ import VulnerabilityScanner from "./pages/VulnerabilityScanner";
 import Reports from "./pages/Reports";
 import Remediation from "./pages/Remediation";
 import Settings from "./pages/Settings";
+import PricingPage from "./pages/PricingPage";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -54,6 +55,7 @@ const App = () => (
                   <main className="flex-1 flex flex-col">
                     <Routes>
                       <Route path="/" element={<Index />} />
+                      <Route path="/pricing" element={<PricingPage />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
