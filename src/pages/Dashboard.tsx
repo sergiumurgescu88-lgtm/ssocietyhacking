@@ -71,7 +71,7 @@ const Dashboard = () => {
         <div className="flex-1 flex flex-col min-w-0">
           <DashboardTopBar />
 
-          <main className="flex-1 p-4 md:p-6 overflow-auto space-y-6">
+          <main className="flex-1 p-4 md:p-6 overflow-auto space-y-6 pb-24 lg:pb-6">
             {/* Welcome */}
             <div className="animate-fade-in">
               <h1 className="text-2xl md:text-3xl font-bold">
