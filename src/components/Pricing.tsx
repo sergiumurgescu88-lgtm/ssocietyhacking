@@ -76,7 +76,7 @@ export type TierKey = keyof typeof STRIPE_TIERS;
 
 export const getTierByProductId = (productId: string): TierKey | null => {
   for (const [key, tier] of Object.entries(STRIPE_TIERS)) {
-    if (tier.productIds.includes(productId)) return key as TierKey;
+    if ((tier.productIds as readonly string[]).includes(productId)) return key as TierKey;
   }
   return null;
 };
