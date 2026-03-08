@@ -55,6 +55,7 @@ const App = () => (
                   <main className="flex-1 flex flex-col">
                     <Routes>
                       <Route path="/" element={<Index />} />
+                      <Route path="/pricing" element={<PricingPage />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
