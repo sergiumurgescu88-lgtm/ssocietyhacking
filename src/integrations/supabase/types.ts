@@ -83,6 +83,100 @@ export type Database = {
         }
         Relationships: []
       }
+      scan_results: {
+        Row: {
+          auth_required: boolean | null
+          created_at: string
+          details: Json | null
+          endpoint: string
+          id: string
+          method: string
+          response_code: number | null
+          risk_level: string
+          scan_id: string
+        }
+        Insert: {
+          auth_required?: boolean | null
+          created_at?: string
+          details?: Json | null
+          endpoint: string
+          id?: string
+          method?: string
+          response_code?: number | null
+          risk_level?: string
+          scan_id: string
+        }
+        Update: {
+          auth_required?: boolean | null
+          created_at?: string
+          details?: Json | null
+          endpoint?: string
+          id?: string
+          method?: string
+          response_code?: number | null
+          risk_level?: string
+          scan_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scan_results_scan_id_fkey"
+            columns: ["scan_id"]
+            isOneToOne: false
+            referencedRelation: "scans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scans: {
+        Row: {
+          authorization_id: string | null
+          completed_at: string | null
+          config: Json
+          created_at: string
+          id: string
+          scan_type: string
+          started_at: string | null
+          status: string
+          target_domain: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          authorization_id?: string | null
+          completed_at?: string | null
+          config?: Json
+          created_at?: string
+          id?: string
+          scan_type?: string
+          started_at?: string | null
+          status?: string
+          target_domain: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          authorization_id?: string | null
+          completed_at?: string | null
+          config?: Json
+          created_at?: string
+          id?: string
+          scan_type?: string
+          started_at?: string | null
+          status?: string
+          target_domain?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scans_authorization_id_fkey"
+            columns: ["authorization_id"]
+            isOneToOne: false
+            referencedRelation: "authorizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
