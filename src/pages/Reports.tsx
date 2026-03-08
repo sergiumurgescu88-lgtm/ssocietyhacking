@@ -430,6 +430,7 @@ const Reports = () => {
             </div>
           </main>
         </div>
+        <BottomNav />
       </div>
 
       {/* New Report Modal */}
