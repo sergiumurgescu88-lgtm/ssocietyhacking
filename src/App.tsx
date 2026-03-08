@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Authorization from "./pages/Authorization";
 import ApiDiscovery from "./pages/ApiDiscovery";
 import VulnerabilityScanner from "./pages/VulnerabilityScanner";
+import Reports from "./pages/Reports";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/dashboard/authorization" element={<Authorization />} />
             <Route path="/dashboard/api-scanner" element={<ApiDiscovery />} />
             <Route path="/dashboard/vulnerability" element={<VulnerabilityScanner />} />
+            <Route path="/dashboard/reports" element={<Reports />} />
 
             {/* Main layout */}
             <Route
