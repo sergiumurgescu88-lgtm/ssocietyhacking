@@ -3,8 +3,8 @@ import { Navigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { DashboardTopBar } from "@/components/DashboardTopBar";
+import { DashboardStatsCards } from "@/components/DashboardStatsCards";
 import {
-  ShieldCheck,
   Scan,
   Bug,
   BarChart3,
