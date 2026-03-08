@@ -7,7 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import LegalBanner from "./components/LegalBanner";
+
 import { PageLoader } from "./components/PageLoader";
 import { AnimatedOutlet } from "./components/AnimatedOutlet";
 
