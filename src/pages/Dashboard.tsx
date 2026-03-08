@@ -3,8 +3,8 @@ import { Navigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { DashboardTopBar } from "@/components/DashboardTopBar";
+import { DashboardStatsCards } from "@/components/DashboardStatsCards";
 import {
-  ShieldCheck,
   Scan,
   Bug,
   BarChart3,
@@ -15,40 +15,8 @@ import {
   Zap,
 } from "lucide-react";
 
-const stats = [
-  {
-    label: "Total Scans",
-    value: "1,284",
-    change: "+12%",
-    icon: Scan,
-    color: "from-primary/20 to-primary/5",
-    iconColor: "text-primary",
-  },
-  {
-    label: "Vulnerabilities",
-    value: "47",
-    change: "-8%",
-    icon: Bug,
-    color: "from-destructive/20 to-destructive/5",
-    iconColor: "text-destructive",
-  },
-  {
-    label: "Resolved",
-    value: "1,102",
-    change: "+23%",
-    icon: CheckCircle2,
-    color: "from-green-500/20 to-green-500/5",
-    iconColor: "text-green-400",
-  },
-  {
-    label: "Reports",
-    value: "89",
-    change: "+5%",
-    icon: BarChart3,
-    color: "from-secondary/20 to-secondary/5",
-    iconColor: "text-secondary",
-  },
-];
+
+
 
 const recentScans = [
   { target: "api.example.com", type: "Full Scan", status: "Completed", severity: "Low", date: "2 hours ago" },
@@ -111,46 +79,8 @@ const Dashboard = () => {
               <p className="text-muted-foreground mt-1">Here's your security overview</p>
             </div>
 
-            {/* Authorization Status */}
-            <div className="glass-card p-5 gradient-border animate-fade-in" style={{ animationDelay: "0.05s" }}>
-              <div className="flex items-center justify-between flex-wrap gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary/30 to-secondary/20 flex items-center justify-center">
-                    <ShieldCheck className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-semibold text-foreground">Authorization Active</h2>
-                    <p className="text-sm text-muted-foreground">
-                      Your security scanner is authorized and running
-                    </p>
-                  </div>
-                </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-500/15 text-green-400 border border-green-500/20">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
-                  Verified
-                </span>
-              </div>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {stats.map((stat, i) => (
-                <div
-                  key={stat.label}
-                  className="glass-card p-5 hover:shadow-[var(--shadow-glow-primary)] transition-shadow duration-300 animate-fade-in"
-                  style={{ animationDelay: `${0.1 + i * 0.05}s` }}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className={`h-10 w-10 rounded-lg bg-gradient-to-br ${stat.color} flex items-center justify-center`}>
-                      <stat.icon className={`h-5 w-5 ${stat.iconColor}`} />
-                    </div>
-                    <span className="text-xs font-medium text-primary">{stat.change}</span>
-                  </div>
-                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+            {/* Stats Cards */}
+            <DashboardStatsCards />
 
             {/* Recent Scans & Quick Actions */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
