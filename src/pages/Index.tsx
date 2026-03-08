@@ -89,6 +89,82 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Features Section */}
+      <section className="relative z-10 py-20 px-4">
+        <div className="container">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+              Powerful <span className="gradient-text">Features</span>
+            </h2>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Everything you need for responsible security research
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Search,
+                secondaryIcon: Wifi,
+                title: "API Discovery",
+                description: "Find exposed endpoints safely",
+                gradient: "from-primary to-primary/60",
+                glowColor: "hsl(166 100% 42% / 0.35)",
+                iconBg: "bg-primary/10 border-primary/20",
+                iconColor: "text-primary",
+              },
+              {
+                icon: Shield,
+                secondaryIcon: Scan,
+                title: "Vulnerability Detection",
+                description: "Non-destructive security scans",
+                gradient: "from-secondary to-secondary/60",
+                glowColor: "hsl(255 100% 69% / 0.35)",
+                iconBg: "bg-secondary/10 border-secondary/20",
+                iconColor: "text-secondary",
+              },
+              {
+                icon: FileCheck,
+                secondaryIcon: ShieldCheck,
+                title: "Professional Reports",
+                description: "Bug bounty ready format",
+                gradient: "from-[hsl(210,100%,60%)] to-[hsl(210,100%,40%)]",
+                glowColor: "hsl(210 100% 60% / 0.35)",
+                iconBg: "bg-[hsl(210,100%,60%)]/10 border-[hsl(210,100%,60%)]/20",
+                iconColor: "text-[hsl(210,100%,60%)]",
+              },
+            ].map((feature) => (
+              <div
+                key={feature.title}
+                className="group relative glass-card p-8 rounded-2xl transition-all duration-500 hover:-translate-y-2 animated-border cursor-default"
+                style={{
+                  // @ts-ignore
+                  "--hover-glow": feature.glowColor,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 50px -10px ${feature.glowColor}`;
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                {/* Icon */}
+                <div className={`relative inline-flex items-center justify-center w-14 h-14 rounded-xl border ${feature.iconBg} mb-6 transition-transform duration-500 group-hover:scale-110`}>
+                  <feature.icon className={`h-6 w-6 ${feature.iconColor} transition-transform duration-500 group-hover:rotate-[-8deg]`} />
+                  <feature.secondaryIcon className={`absolute -bottom-1 -right-1 h-4 w-4 ${feature.iconColor} opacity-60`} />
+                </div>
+
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+
+                {/* Bottom gradient line */}
+                <div className={`absolute bottom-0 left-[10%] right-[10%] h-px bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
