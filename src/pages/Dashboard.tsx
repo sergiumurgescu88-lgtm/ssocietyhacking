@@ -5,6 +5,8 @@ import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { DashboardTopBar } from "@/components/DashboardTopBar";
 import { DashboardStatsCards } from "@/components/DashboardStatsCards";
 import BottomNav from "@/components/BottomNav";
+import { useSessionTimeout } from "@/hooks/useSessionTimeout";
+import { useActivityLogger } from "@/hooks/useActivityLogger";
 import {
   Scan,
   Bug,
