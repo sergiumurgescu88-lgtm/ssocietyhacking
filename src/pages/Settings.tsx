@@ -1,4 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuditExport } from "@/hooks/useAuditExport";
 import { useAuth } from "@/contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -500,41 +502,38 @@ const BillingTab = () => {
 
 // ─── Audit Log Tab ─────────────────────────────────────────────
 const AuditLogTab = () => {
+  const { user } = useAuth();
   const [search, setSearch] = useState("");
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
+  const [logs, setLogs] = useState<Array<{ action: string; target: string | null; ip_address: string | null; created_at: string; user_agent: string | null }>>([]);
+  const [loadingLogs, setLoadingLogs] = useState(true);
+  const { exportCSV, exporting } = useAuditExport();
 
-  const logs = [
-    { action: "Scan started", target: "api.example.com", ip: "192.168.1.105", date: "2026-03-08 14:32:10", user: "you" },
-    { action: "Report exported", target: "Q1 Security Audit", ip: "192.168.1.105", date: "2026-03-08 12:15:44", user: "you" },
-    { action: "Authorization created", target: "payments.store.co", ip: "10.0.0.42", date: "2026-03-07 09:30:22", user: "you" },
-    { action: "API key updated", target: "SecurityTrails", ip: "192.168.1.105", date: "2026-03-06 18:45:00", user: "you" },
-    { action: "Password changed", target: "Account", ip: "172.16.0.12", date: "2026-03-05 11:02:33", user: "you" },
-    { action: "Login", target: "Dashboard", ip: "85.120.44.12", date: "2026-03-05 10:58:12", user: "you" },
-    { action: "Report deleted", target: "Old Draft Report", ip: "192.168.1.105", date: "2026-03-04 16:20:00", user: "you" },
-    { action: "Scan completed", target: "auth.myapp.io", ip: "10.0.0.42", date: "2026-03-03 08:12:55", user: "you" },
-  ];
+  useEffect(() => {
+    if (!user) return;
+    const fetchLogs = async () => {
+      setLoadingLogs(true);
+      const { data } = await supabase
+        .from("activity_logs")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
+        .limit(200);
+      setLogs(data || []);
+      setLoadingLogs(false);
+    };
+    fetchLogs();
+  }, [user]);
 
   const filtered = logs.filter((l) => {
     const q = search.toLowerCase();
-    const matchesSearch = !q || l.action.toLowerCase().includes(q) || l.target.toLowerCase().includes(q) || l.ip.includes(q);
-    const matchesFrom = !dateFrom || l.date >= dateFrom;
-    const matchesTo = !dateTo || l.date <= dateTo + " 23:59:59";
+    const matchesSearch = !q || l.action.toLowerCase().includes(q) || (l.target || "").toLowerCase().includes(q) || (l.ip_address || "").includes(q);
+    const logDate = l.created_at.split("T")[0];
+    const matchesFrom = !dateFrom || logDate >= dateFrom;
+    const matchesTo = !dateTo || logDate <= dateTo;
     return matchesSearch && matchesFrom && matchesTo;
   });
-
-  const exportCSV = () => {
-    const header = "Action,Target,IP Address,Date,User\n";
-    const rows = filtered.map((l) => `${l.action},${l.target},${l.ip},${l.date},${l.user}`).join("\n");
-    const blob = new Blob([header + rows], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "audit-log.csv";
-    a.click();
-    URL.revokeObjectURL(url);
-    toast({ title: "Exported", description: "Audit log exported as CSV" });
-  };
 
   return (
     <Card className="border-border/50 bg-card/80 backdrop-blur">
@@ -544,8 +543,8 @@ const AuditLogTab = () => {
             <CardTitle className="text-lg">Audit Log</CardTitle>
             <CardDescription>Track all activity on your account</CardDescription>
           </div>
-          <Button variant="outline" size="sm" onClick={exportCSV}>
-            <Download className="h-3.5 w-3.5" /> Export CSV
+          <Button variant="outline" size="sm" onClick={exportCSV} disabled={exporting}>
+            <Download className="h-3.5 w-3.5" /> {exporting ? "Exporting..." : "Export CSV"}
           </Button>
         </div>
       </CardHeader>
@@ -561,31 +560,37 @@ const AuditLogTab = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border/30">
-                <th className="text-left p-2 text-muted-foreground font-medium">Action</th>
-                <th className="text-left p-2 text-muted-foreground font-medium hidden sm:table-cell">Target</th>
-                <th className="text-left p-2 text-muted-foreground font-medium hidden md:table-cell">IP Address</th>
-                <th className="text-left p-2 text-muted-foreground font-medium">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((l, i) => (
-                <tr key={i} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
-                  <td className="p-2 text-xs font-medium text-foreground">{l.action}</td>
-                  <td className="p-2 text-xs text-muted-foreground hidden sm:table-cell">{l.target}</td>
-                  <td className="p-2 font-mono text-xs text-muted-foreground hidden md:table-cell">{l.ip}</td>
-                  <td className="p-2 font-mono text-xs text-muted-foreground">{l.date}</td>
+        {loadingLogs ? (
+          <div className="flex justify-center py-8">
+            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border/30">
+                  <th className="text-left p-2 text-muted-foreground font-medium">Action</th>
+                  <th className="text-left p-2 text-muted-foreground font-medium hidden sm:table-cell">Target</th>
+                  <th className="text-left p-2 text-muted-foreground font-medium hidden md:table-cell">IP Address</th>
+                  <th className="text-left p-2 text-muted-foreground font-medium">Date</th>
                 </tr>
-              ))}
-              {filtered.length === 0 && (
-                <tr><td colSpan={4} className="p-6 text-center text-muted-foreground text-sm">No matching entries found</td></tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {filtered.map((l, i) => (
+                  <tr key={i} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
+                    <td className="p-2 text-xs font-medium text-foreground">{l.action}</td>
+                    <td className="p-2 text-xs text-muted-foreground hidden sm:table-cell">{l.target || "—"}</td>
+                    <td className="p-2 font-mono text-xs text-muted-foreground hidden md:table-cell">{l.ip_address || "—"}</td>
+                    <td className="p-2 font-mono text-xs text-muted-foreground">{new Date(l.created_at).toLocaleString()}</td>
+                  </tr>
+                ))}
+                {filtered.length === 0 && (
+                  <tr><td colSpan={4} className="p-6 text-center text-muted-foreground text-sm">No matching entries found</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
