@@ -85,8 +85,13 @@ const Dashboard = () => {
               <p className="text-muted-foreground mt-1">Here's your security overview</p>
             </div>
 
-            {/* Stats Cards */}
-            <DashboardStatsCards />
+            {/* Security Score + Stats */}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <SecurityScoreCard score={null} />
+              <div className="lg:col-span-3">
+                <DashboardStatsCards />
+              </div>
+            </div>
 
             {/* Recent Scans & Quick Actions */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
