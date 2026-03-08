@@ -1,26 +1,29 @@
 import { Shield, Wifi, ArrowRight, Play, Users, Bug, Clock, ShieldCheck, ChevronDown, Search, Scan, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import NetworkBackground from "@/components/NetworkBackground";
 import FloatingShields from "@/components/FloatingShields";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
 
 const Index = () => {
+  const navigate = useNavigate();
+
+  const scrollToFeatures = () => {
+    document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="flex-1 pb-20 lg:pb-0">
       {/* Hero Section */}
       <section className="relative min-h-[calc(100vh-7rem)] flex flex-col items-center justify-center overflow-hidden px-4">
-        {/* Animated background */}
         <NetworkBackground />
         <FloatingShields />
 
-        {/* Gradient glow orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Content */}
         <div className="relative z-10 text-center max-w-3xl mx-auto animate-fade-in">
-          {/* Logo mark */}
           <div className="flex items-center justify-center gap-3 mb-8">
             <div className="relative flex items-center justify-center w-14 h-14">
               <Shield className="h-11 w-11 text-primary drop-shadow-[0_0_15px_hsl(166,100%,42%,0.4)]" />
@@ -41,10 +44,10 @@ const Index = () => {
             Ethical security research platform for authorized testing
           </p>
 
-          {/* CTA Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
             <Button
               size="lg"
+              onClick={() => navigate("/signup")}
               className="glow-button bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 font-semibold px-8 h-12 text-base rounded-xl"
             >
               Start Free
@@ -53,15 +56,15 @@ const Index = () => {
             <Button
               size="lg"
               variant="outline"
+              onClick={scrollToFeatures}
               className="border-border/60 text-foreground hover:bg-muted/30 font-semibold px-8 h-12 text-base rounded-xl"
             >
               <Play className="mr-2 h-4 w-4 fill-current" />
-              Watch Demo
+              See How It Works
             </Button>
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce-slow z-10">
           <span className="text-xs text-muted-foreground font-medium tracking-widest uppercase">Scroll</span>
           <ChevronDown className="h-4 w-4 text-muted-foreground" />
@@ -93,7 +96,7 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="relative z-10 py-20 px-4">
+      <section id="features" className="relative z-10 py-20 px-4">
         <div className="container">
           <div className="text-center mb-14">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -115,6 +118,7 @@ const Index = () => {
                 glowColor: "hsl(166 100% 42% / 0.35)",
                 iconBg: "bg-primary/10 border-primary/20",
                 iconColor: "text-primary",
+                link: "/dashboard/api-scanner",
               },
               {
                 icon: Shield,
@@ -125,6 +129,7 @@ const Index = () => {
                 glowColor: "hsl(255 100% 69% / 0.35)",
                 iconBg: "bg-secondary/10 border-secondary/20",
                 iconColor: "text-secondary",
+                link: "/dashboard/vulnerability",
               },
               {
                 icon: FileCheck,
@@ -135,11 +140,13 @@ const Index = () => {
                 glowColor: "hsl(210 100% 60% / 0.35)",
                 iconBg: "bg-[hsl(210,100%,60%)]/10 border-[hsl(210,100%,60%)]/20",
                 iconColor: "text-[hsl(210,100%,60%)]",
+                link: "/dashboard/reports",
               },
             ].map((feature) => (
               <div
                 key={feature.title}
-                className="group relative glass-card p-8 rounded-2xl transition-all duration-500 hover:-translate-y-2 animated-border cursor-default"
+                onClick={() => navigate(feature.link)}
+                className="group relative glass-card p-8 rounded-2xl transition-all duration-500 hover:-translate-y-2 animated-border cursor-pointer"
                 style={{
                   // @ts-ignore
                   "--hover-glow": feature.glowColor,
@@ -151,7 +158,6 @@ const Index = () => {
                   (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
-                {/* Icon */}
                 <div className={`relative inline-flex items-center justify-center w-14 h-14 rounded-xl border ${feature.iconBg} mb-6 transition-transform duration-500 group-hover:scale-110`}>
                   <feature.icon className={`h-6 w-6 ${feature.iconColor} transition-transform duration-500 group-hover:rotate-[-8deg]`} />
                   <feature.secondaryIcon className={`absolute -bottom-1 -right-1 h-4 w-4 ${feature.iconColor} opacity-60`} />
@@ -160,7 +166,10 @@ const Index = () => {
                 <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
 
-                {/* Bottom gradient line */}
+                <div className="mt-4 flex items-center gap-1 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  Try it <ArrowRight className="h-3.5 w-3.5" />
+                </div>
+
                 <div className={`absolute bottom-0 left-[10%] right-[10%] h-px bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               </div>
             ))}
@@ -169,7 +178,9 @@ const Index = () => {
       </section>
 
       {/* How It Works */}
-      <HowItWorks />
+      <div id="how-it-works">
+        <HowItWorks />
+      </div>
 
       {/* Pricing */}
       <Pricing />
