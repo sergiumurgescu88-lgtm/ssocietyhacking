@@ -15,40 +15,8 @@ import {
   Zap,
 } from "lucide-react";
 
-const stats = [
-  {
-    label: "Total Scans",
-    value: "1,284",
-    change: "+12%",
-    icon: Scan,
-    color: "from-primary/20 to-primary/5",
-    iconColor: "text-primary",
-  },
-  {
-    label: "Vulnerabilities",
-    value: "47",
-    change: "-8%",
-    icon: Bug,
-    color: "from-destructive/20 to-destructive/5",
-    iconColor: "text-destructive",
-  },
-  {
-    label: "Resolved",
-    value: "1,102",
-    change: "+23%",
-    icon: CheckCircle2,
-    color: "from-green-500/20 to-green-500/5",
-    iconColor: "text-green-400",
-  },
-  {
-    label: "Reports",
-    value: "89",
-    change: "+5%",
-    icon: BarChart3,
-    color: "from-secondary/20 to-secondary/5",
-    iconColor: "text-secondary",
-  },
-];
+
+
 
 const recentScans = [
   { target: "api.example.com", type: "Full Scan", status: "Completed", severity: "Low", date: "2 hours ago" },
