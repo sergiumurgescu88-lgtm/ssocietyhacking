@@ -4,6 +4,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { DashboardTopBar } from "@/components/DashboardTopBar";
 import { DashboardStatsCards } from "@/components/DashboardStatsCards";
+import BottomNav from "@/components/BottomNav";
 import {
   Scan,
   Bug,
