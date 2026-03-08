@@ -166,6 +166,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* How It Works */}
+      <HowItWorks />
     </div>
   );
 };
