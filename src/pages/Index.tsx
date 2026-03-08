@@ -1,4 +1,4 @@
-import { Shield, Wifi, ArrowRight, Play, Users, Bug, Clock, ShieldCheck, ChevronDown } from "lucide-react";
+import { Shield, Wifi, ArrowRight, Play, Users, Bug, Clock, ShieldCheck, ChevronDown, Search, Scan, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NetworkBackground from "@/components/NetworkBackground";
 import FloatingShields from "@/components/FloatingShields";
