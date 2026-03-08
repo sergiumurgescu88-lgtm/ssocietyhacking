@@ -12,6 +12,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import Authorization from "./pages/Authorization";
 import ApiDiscovery from "./pages/ApiDiscovery";
+import VulnerabilityScanner from "./pages/VulnerabilityScanner";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
