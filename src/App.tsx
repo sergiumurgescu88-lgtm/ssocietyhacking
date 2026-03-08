@@ -63,7 +63,7 @@ const App = () => (
               path="*"
               element={
                 <div className="min-h-screen flex flex-col">
-                  <LegalBanner />
+                  
                   <Header />
                   <main className="flex-1 flex flex-col">
                     <Routes>
