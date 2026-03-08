@@ -14,6 +14,7 @@ import Authorization from "./pages/Authorization";
 import ApiDiscovery from "./pages/ApiDiscovery";
 import VulnerabilityScanner from "./pages/VulnerabilityScanner";
 import Reports from "./pages/Reports";
+import Remediation from "./pages/Remediation";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
