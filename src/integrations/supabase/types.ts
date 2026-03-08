@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      authorizations: {
+        Row: {
+          auth_type: string
+          created_at: string
+          expires_at: string | null
+          file_url: string | null
+          id: string
+          notes: string | null
+          program_url: string | null
+          status: string
+          target_domain: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          auth_type: string
+          created_at?: string
+          expires_at?: string | null
+          file_url?: string | null
+          id?: string
+          notes?: string | null
+          program_url?: string | null
+          status?: string
+          target_domain: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          auth_type?: string
+          created_at?: string
+          expires_at?: string | null
+          file_url?: string | null
+          id?: string
+          notes?: string | null
+          program_url?: string | null
+          status?: string
+          target_domain?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
