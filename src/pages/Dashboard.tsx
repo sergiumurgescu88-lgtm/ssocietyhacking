@@ -152,6 +152,7 @@ const Dashboard = () => {
               </div>
             </div>
           </main>
+          <BottomNav />
         </div>
       </div>
     </SidebarProvider>
