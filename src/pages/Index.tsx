@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import NetworkBackground from "@/components/NetworkBackground";
 import FloatingShields from "@/components/FloatingShields";
 import HowItWorks from "@/components/HowItWorks";
+import Pricing from "@/components/Pricing";
 
 const Index = () => {
   return (
@@ -169,6 +170,9 @@ const Index = () => {
 
       {/* How It Works */}
       <HowItWorks />
+
+      {/* Pricing */}
+      <Pricing />
     </div>
   );
 };
