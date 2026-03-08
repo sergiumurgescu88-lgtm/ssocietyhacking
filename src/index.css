@@ -54,10 +54,32 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Safe area for bottom nav */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Dashboard pages need bottom padding for bottom nav on mobile */
+  @media (max-width: 1023px) {
+    .pb-bottom-nav {
+      padding-bottom: 5rem;
+    }
+  }
+
+  /* Touch-friendly targets */
+  @media (pointer: coarse) {
+    button, a, [role="button"] {
+      min-height: 44px;
+    }
   }
 }
 
