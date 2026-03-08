@@ -42,6 +42,7 @@ const App = () => (
             <Route path="/dashboard/vulnerability" element={<VulnerabilityScanner />} />
             <Route path="/dashboard/reports" element={<Reports />} />
             <Route path="/dashboard/remediation" element={<Remediation />} />
+            <Route path="/dashboard/settings" element={<Settings />} />
 
             {/* Main layout */}
             <Route
