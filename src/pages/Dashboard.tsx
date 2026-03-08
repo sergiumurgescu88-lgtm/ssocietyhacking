@@ -52,6 +52,8 @@ const quickActions = [
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
+  useSessionTimeout();
+  const { logActivity } = useActivityLogger();
 
   if (loading) {
     return (
