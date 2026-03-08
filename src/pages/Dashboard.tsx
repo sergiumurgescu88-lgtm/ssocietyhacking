@@ -4,6 +4,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { DashboardTopBar } from "@/components/DashboardTopBar";
 import { DashboardStatsCards } from "@/components/DashboardStatsCards";
+import BottomNav from "@/components/BottomNav";
 import {
   Scan,
   Bug,
@@ -70,7 +71,7 @@ const Dashboard = () => {
         <div className="flex-1 flex flex-col min-w-0">
           <DashboardTopBar />
 
-          <main className="flex-1 p-4 md:p-6 overflow-auto space-y-6">
+          <main className="flex-1 p-4 md:p-6 overflow-auto space-y-6 pb-24 lg:pb-6">
             {/* Welcome */}
             <div className="animate-fade-in">
               <h1 className="text-2xl md:text-3xl font-bold">
@@ -151,6 +152,7 @@ const Dashboard = () => {
               </div>
             </div>
           </main>
+          <BottomNav />
         </div>
       </div>
     </SidebarProvider>

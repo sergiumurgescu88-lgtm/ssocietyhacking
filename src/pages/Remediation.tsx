@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { DashboardTopBar } from "@/components/DashboardTopBar";
+import BottomNav from "@/components/BottomNav";
 import { cn } from "@/lib/utils";
 import {
   Search,
@@ -619,6 +620,7 @@ const Remediation = () => {
               </div>
             </main>
           </div>
+          <BottomNav />
         </div>
       </SidebarProvider>
     );
@@ -707,6 +709,7 @@ const Remediation = () => {
             )}
           </main>
         </div>
+        <BottomNav />
       </div>
     </SidebarProvider>
   );
