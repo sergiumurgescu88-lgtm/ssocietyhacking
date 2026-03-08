@@ -709,6 +709,7 @@ const Remediation = () => {
             )}
           </main>
         </div>
+        <BottomNav />
       </div>
     </SidebarProvider>
   );
