@@ -83,6 +83,54 @@ export type Database = {
         }
         Relationships: []
       }
+      reports: {
+        Row: {
+          company_logo_url: string | null
+          company_name: string | null
+          content: Json | null
+          created_at: string
+          custom_recommendations: string | null
+          finding_ids: number[] | null
+          id: string
+          scan_ids: string[] | null
+          status: string
+          template: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company_logo_url?: string | null
+          company_name?: string | null
+          content?: Json | null
+          created_at?: string
+          custom_recommendations?: string | null
+          finding_ids?: number[] | null
+          id?: string
+          scan_ids?: string[] | null
+          status?: string
+          template?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company_logo_url?: string | null
+          company_name?: string | null
+          content?: Json | null
+          created_at?: string
+          custom_recommendations?: string | null
+          finding_ids?: number[] | null
+          id?: string
+          scan_ids?: string[] | null
+          status?: string
+          template?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       scan_results: {
         Row: {
           auth_required: boolean | null
