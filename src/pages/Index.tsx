@@ -2,6 +2,7 @@ import { Shield, Wifi, ArrowRight, Play, Users, Bug, Clock, ShieldCheck, Chevron
 import { Button } from "@/components/ui/button";
 import NetworkBackground from "@/components/NetworkBackground";
 import FloatingShields from "@/components/FloatingShields";
+import HowItWorks from "@/components/HowItWorks";
 
 const Index = () => {
   return (
@@ -165,6 +166,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* How It Works */}
+      <HowItWorks />
     </div>
   );
 };

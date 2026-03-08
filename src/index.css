@@ -141,6 +141,26 @@
     animation: bounce-slow 2s ease-in-out infinite;
   }
 
+  .timeline-line {
+    background: var(--gradient-primary);
+    animation: timeline-grow 2s ease-out forwards;
+    transform-origin: left;
+  }
+  @keyframes timeline-grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .timeline-line-vertical {
+    background: var(--gradient-primary);
+    animation: timeline-grow-v 2s ease-out forwards;
+    transform-origin: top;
+  }
+  @keyframes timeline-grow-v {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+
   @property --border-angle {
     syntax: '<angle>';
     initial-value: 0deg;
