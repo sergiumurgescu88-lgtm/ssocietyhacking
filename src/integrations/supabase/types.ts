@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_logs: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          ip_address: string | null
+          target: string | null
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          target?: string | null
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          target?: string | null
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       authorizations: {
         Row: {
           auth_type: string
@@ -221,6 +251,83 @@ export type Database = {
             columns: ["authorization_id"]
             isOneToOne: false
             referencedRelation: "authorizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscriptions: {
+        Row: {
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          plan: string
+          status: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan?: string
+          status?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan?: string
+          status?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      vulnerabilities: {
+        Row: {
+          created_at: string
+          cvss_score: number | null
+          description: string | null
+          endpoint: string | null
+          id: string
+          remediation: string | null
+          scan_id: string
+          severity: string
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          cvss_score?: number | null
+          description?: string | null
+          endpoint?: string | null
+          id?: string
+          remediation?: string | null
+          scan_id: string
+          severity?: string
+          type: string
+        }
+        Update: {
+          created_at?: string
+          cvss_score?: number | null
+          description?: string | null
+          endpoint?: string | null
+          id?: string
+          remediation?: string | null
+          scan_id?: string
+          severity?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vulnerabilities_scan_id_fkey"
+            columns: ["scan_id"]
+            isOneToOne: false
+            referencedRelation: "scans"
             referencedColumns: ["id"]
           },
         ]
