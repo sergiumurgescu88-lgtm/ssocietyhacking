@@ -6,9 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
-import DesktopSidebar from "./components/DesktopSidebar";
-import BottomNav from "./components/BottomNav";
 import Footer from "./components/Footer";
+import LegalBanner from "./components/LegalBanner";
 
 const queryClient = new QueryClient();
 
@@ -19,18 +18,15 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <div className="min-h-screen flex flex-col">
+          <LegalBanner />
           <Header />
-          <div className="flex flex-1">
-            <DesktopSidebar />
-            <main className="flex-1 flex flex-col">
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <Footer />
-            </main>
-          </div>
-          <BottomNav />
+          <main className="flex-1 flex flex-col">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
         </div>
       </BrowserRouter>
     </TooltipProvider>
