@@ -7,7 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import LegalBanner from "./components/LegalBanner";
+
 import { PageLoader } from "./components/PageLoader";
 import { AnimatedOutlet } from "./components/AnimatedOutlet";
 
@@ -63,7 +63,7 @@ const App = () => (
               path="*"
               element={
                 <div className="min-h-screen flex flex-col">
-                  <LegalBanner />
+                  
                   <Header />
                   <main className="flex-1 flex flex-col">
                     <Routes>
