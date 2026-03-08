@@ -40,6 +40,7 @@ const App = () => (
             <Route path="/dashboard/api-scanner" element={<ApiDiscovery />} />
             <Route path="/dashboard/vulnerability" element={<VulnerabilityScanner />} />
             <Route path="/dashboard/reports" element={<Reports />} />
+            <Route path="/dashboard/remediation" element={<Remediation />} />
 
             {/* Main layout */}
             <Route
